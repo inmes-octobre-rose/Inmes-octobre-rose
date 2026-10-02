@@ -862,4 +862,292 @@ function showMessage(text,type){
 </script>
 
 </body>
+      </html>   };
+
+      img.onerror = reject;
+
+      img.src = event.target.result;
+
+    };
+
+    reader.onerror = reject;
+
+    reader.readAsDataURL(file);
+
+  });
+
+}
+
+
+/* =====================================================
+   FORMULAIRE
+===================================================== */
+
+const form =
+document.getElementById("registrationForm");
+
+const submitButton =
+document.getElementById("submitButton");
+
+const message =
+document.getElementById("message");
+
+
+form.addEventListener("submit", async function(event){
+
+  event.preventDefault();
+
+
+  const nom =
+  document.getElementById("nom").value.trim();
+
+  const prenom =
+  document.getElementById("prenom").value.trim();
+
+  const whatsapp =
+  document.getElementById("whatsapp").value.trim();
+
+  const statut =
+  document.getElementById("statut").value;
+
+  const taille =
+  document.getElementById("taille").value;
+
+  const reseau =
+  document.getElementById("reseau").value;
+
+  const numeroPaiement =
+  document.getElementById("numeroPaiement").value.trim();
+
+  const reference =
+  document.getElementById("reference").value.trim();
+
+  const receiptInput =
+  document.getElementById("receipt");
+
+  const file =
+  receiptInput.files[0];
+
+
+  if(!file){
+
+    showMessage(
+      "Veuillez ajouter votre reçu de paiement.",
+      "error"
+    );
+
+    return;
+
+  }
+
+
+  if(file.size > 8 * 1024 * 1024){
+
+    showMessage(
+      "Le reçu est trop volumineux. Choisissez une image de moins de 8 Mo.",
+      "error"
+    );
+
+    return;
+
+  }
+
+
+  if(!reseau){
+
+    showMessage(
+      "Veuillez sélectionner votre réseau de paiement.",
+      "error"
+    );
+
+    return;
+
+  }
+
+
+  submitButton.disabled = true;
+
+  submitButton.textContent =
+  "ENVOI EN COURS...";
+
+
+  try{
+
+    const compressedImage =
+    await compressImage(file);
+
+
+    const base64 =
+    compressedImage.split(",")[1];
+
+
+    const registrationData = {
+
+      nom: nom,
+
+      prenom: prenom,
+
+      whatsapp: whatsapp,
+
+      statut: statut,
+
+      taille: taille,
+
+      reseau: reseau,
+
+      numeroPaiement: numeroPaiement,
+
+      numeroDestinataire:
+      payments[reseau].number,
+
+      montant: MONTANT,
+
+      reference: reference,
+
+      receipt: {
+
+        name:
+        "Recu-" +
+        Date.now() +
+        ".jpg",
+
+        type:
+        "image/jpeg",
+
+        data:
+        base64
+
+      }
+
+    };
+
+
+    /*
+      Envoi vers Google Apps Script.
+      "no-cors" permet au navigateur mobile
+      d'envoyer les données sans bloquer
+      la requête à cause du domaine différent.
+    */
+
+    await fetch(
+
+      SCRIPT_URL,
+
+      {
+
+        method: "POST",
+
+        mode: "no-cors",
+
+        headers: {
+          "Content-Type":
+          "text/plain;charset=utf-8"
+        },
+
+        body:
+        JSON.stringify(registrationData)
+
+      }
+
+    );
+
+
+    showMessage(
+
+      "✅ Votre inscription a été envoyée. " +
+      "Veuillez maintenant confirmer votre inscription sur WhatsApp.",
+
+      "success"
+
+    );
+
+
+    /*
+      Message WhatsApp
+    */
+
+    const whatsappMessage =
+
+`Bonjour, je viens de m'inscrire pour Octobre Rose à l'INMeS.
+
+Nom : ${nom}
+Prénom(s) : ${prenom}
+Numéro WhatsApp : ${whatsapp}
+Réseau de paiement : ${reseau}
+Numéro ayant payé : ${numeroPaiement}
+Référence de transaction : ${reference}
+Montant : ${MONTANT} FCFA
+Taille T-shirt : ${taille}
+
+Je joins ma confirmation d'inscription.`;
+
+    
+    const whatsappURL =
+    "https://wa.me/" +
+    WHATSAPP +
+    "?text=" +
+    encodeURIComponent(whatsappMessage);
+
+
+    setTimeout(function(){
+
+      window.open(
+        whatsappURL,
+        "_blank"
+      );
+
+    },1200);
+
+
+    form.reset();
+
+    paymentBox.style.display =
+    "none";
+
+
+  }catch(error){
+
+    console.error(error);
+
+    showMessage(
+
+      "❌ Une erreur est survenue pendant l'envoi. Vérifiez votre connexion et réessayez.",
+
+      "error"
+
+    );
+
+  }
+
+
+  submitButton.disabled = false;
+
+  submitButton.textContent =
+  "ENVOYER MON INSCRIPTION";
+
+});
+
+
+/* =====================================================
+   MESSAGE
+===================================================== */
+
+function showMessage(text,type){
+
+  message.textContent = text;
+
+  message.className = type;
+
+  message.style.display = "block";
+
+  window.scrollTo({
+    top: document.body.scrollHeight,
+    behavior: "smooth"
+  });
+
+}
+
+</script>
+
+</body>
     </html>
