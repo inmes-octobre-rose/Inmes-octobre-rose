@@ -1,16 +1,865 @@
-## Hi there 👋
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<!--
-**inmes-octobre-rose/Inmes-octobre-rose** is a ✨ _special_ ✨ repository because its `README.md` (this file) appears on your GitHub profile.
+<title>Octobre Rose - INMeS 2026</title>
 
-Here are some ideas to get you started:
+<style>
+*{
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+}
 
-- 🔭 I’m currently working on ...
-- 🌱 I’m currently learning ...
-- 👯 I’m looking to collaborate on ...
-- 🤔 I’m looking for help with ...
-- 💬 Ask me about ...
-- 📫 How to reach me: ...
-- 😄 Pronouns: ...
-- ⚡ Fun fact: ...
--->
+body{
+  font-family:Arial, sans-serif;
+  background:linear-gradient(135deg,#fff5fa,#ffffff);
+  color:#222;
+  line-height:1.5;
+}
+
+.container{
+  width:92%;
+  max-width:650px;
+  margin:25px auto 50px;
+}
+
+.header{
+  background:linear-gradient(135deg,#e91e63,#f48fb1);
+  color:white;
+  padding:30px 20px;
+  border-radius:22px;
+  text-align:center;
+  box-shadow:0 8px 25px rgba(0,0,0,.12);
+  margin-bottom:20px;
+}
+
+.header h1{
+  font-size:27px;
+  margin-bottom:8px;
+}
+
+.header p{
+  font-size:15px;
+}
+
+.info{
+  background:white;
+  padding:20px;
+  border-radius:18px;
+  margin-bottom:20px;
+  box-shadow:0 4px 18px rgba(0,0,0,.08);
+}
+
+.info h2{
+  color:#d81b60;
+  font-size:20px;
+  margin-bottom:10px;
+}
+
+.info p{
+  margin:7px 0;
+}
+
+.price{
+  margin-top:12px;
+  padding:12px;
+  background:#fff0f6;
+  border-radius:12px;
+  text-align:center;
+  font-size:22px;
+  font-weight:bold;
+  color:#d81b60;
+}
+
+form{
+  background:white;
+  padding:22px;
+  border-radius:20px;
+  box-shadow:0 4px 18px rgba(0,0,0,.08);
+}
+
+.section-title{
+  color:#d81b60;
+  font-size:19px;
+  font-weight:bold;
+  margin:5px 0 15px;
+}
+
+label{
+  display:block;
+  font-weight:bold;
+  margin:14px 0 6px;
+}
+
+input,select{
+  width:100%;
+  padding:13px;
+  border:1px solid #ddd;
+  border-radius:10px;
+  font-size:15px;
+  background:#fff;
+}
+
+input:focus,select:focus{
+  outline:none;
+  border-color:#e91e63;
+}
+
+.payment-box{
+  margin-top:15px;
+  padding:15px;
+  background:#fff4f8;
+  border:1px solid #f4bfd3;
+  border-radius:14px;
+  display:none;
+}
+
+.payment-box strong{
+  color:#d81b60;
+}
+
+.copy-btn{
+  margin-top:8px;
+  border:none;
+  background:#e91e63;
+  color:white;
+  padding:8px 12px;
+  border-radius:8px;
+  cursor:pointer;
+}
+
+.warning{
+  background:#fff8e1;
+  border-left:4px solid #f9a825;
+  padding:12px;
+  margin-top:12px;
+  border-radius:8px;
+  font-size:14px;
+}
+
+.file-box{
+  border:2px dashed #e5a7bd;
+  padding:18px;
+  border-radius:12px;
+  text-align:center;
+  margin-top:8px;
+  background:#fffafd;
+}
+
+button.submit{
+  width:100%;
+  margin-top:25px;
+  padding:15px;
+  border:none;
+  border-radius:12px;
+  background:#e91e63;
+  color:white;
+  font-size:17px;
+  font-weight:bold;
+  cursor:pointer;
+}
+
+button.submit:disabled{
+  background:#aaa;
+  cursor:not-allowed;
+}
+
+#message{
+  margin-top:18px;
+  padding:14px;
+  border-radius:10px;
+  display:none;
+  text-align:center;
+  font-weight:bold;
+}
+
+.success{
+  background:#e8f5e9;
+  color:#2e7d32;
+}
+
+.error{
+  background:#ffebee;
+  color:#c62828;
+}
+
+.footer{
+  text-align:center;
+  margin-top:20px;
+  font-size:13px;
+  color:#777;
+}
+
+.small{
+  font-size:13px;
+  color:#666;
+  margin-top:5px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+  <div class="header">
+    <h1>OCTOBRE ROSE À L'INMeS</h1>
+    <p>Grande marche de lutte contre le cancer du sein</p>
+  </div>
+
+  <div class="info">
+
+    <h2>📅 Rendez-vous le 24 octobre 2026</h2>
+
+    <p>📍 <strong>Lieu :</strong> Marché Ganhi – Cotonou</p>
+
+    <p>
+      Rejoins-nous pour une grande mobilisation dédiée à la
+      sensibilisation et à la lutte contre le cancer du sein.
+    </p>
+
+    <div class="price">
+      Participation : 3 000 FCFA
+    </div>
+
+  </div>
+
+
+  <form id="registrationForm">
+
+    <div class="section-title">
+      👤 Informations personnelles
+    </div>
+
+    <label for="nom">Nom *</label>
+    <input
+      type="text"
+      id="nom"
+      required
+      placeholder="Votre nom"
+    >
+
+    <label for="prenom">Prénom(s) *</label>
+    <input
+      type="text"
+      id="prenom"
+      required
+      placeholder="Votre prénom"
+    >
+
+    <label for="whatsapp">Numéro WhatsApp *</label>
+    <input
+      type="tel"
+      id="whatsapp"
+      required
+      inputmode="tel"
+      placeholder="Ex : 01XXXXXXXX"
+    >
+
+    <label for="statut">Statut *</label>
+    <select id="statut" required>
+      <option value="">-- Sélectionner --</option>
+      <option>Étudiant(e)</option>
+      <option>Élève</option>
+      <option>Professionnel(le) de santé</option>
+      <option>Personnel administratif</option>
+      <option>Autre</option>
+    </select>
+
+    <label for="taille">Taille du T-shirt *</label>
+    <select id="taille" required>
+      <option value="">-- Sélectionner --</option>
+      <option>S</option>
+      <option>M</option>
+      <option>L</option>
+      <option>XL</option>
+      <option>XXL</option>
+      <option>XXXL</option>
+    </select>
+
+
+    <div class="section-title" style="margin-top:28px;">
+      💳 Paiement
+    </div>
+
+    <p class="small">
+      Effectuez le paiement de <strong>3 000 FCFA</strong> avant de
+      poursuivre votre inscription.
+    </p>
+
+    <label for="reseau">Réseau utilisé pour le paiement *</label>
+
+    <select id="reseau" required>
+
+      <option value="">
+        -- Choisir le réseau --
+      </option>
+
+      <option value="MTN Mobile Money">
+        MTN Mobile Money
+      </option>
+
+      <option value="Moov Money">
+        Moov Money
+      </option>
+
+      <option value="Celtiis Cash">
+        Celtiis Cash
+      </option>
+
+    </select>
+
+
+    <div id="paymentBox" class="payment-box">
+
+      <p>
+        <strong>Réseau :</strong>
+        <span id="networkName"></span>
+      </p>
+
+      <p>
+        <strong>Numéro destinataire :</strong>
+        <span id="destinationNumber"></span>
+      </p>
+
+      <p>
+        <strong>Nom du titulaire :</strong>
+        <span id="accountName"></span>
+      </p>
+
+      <button
+        type="button"
+        class="copy-btn"
+        onclick="copyPaymentNumber()">
+        Copier le numéro
+      </button>
+
+      <div class="warning">
+        ⚠️ Vérifiez attentivement le <strong>numéro</strong> et le
+        <strong>nom du bénéficiaire</strong> avant de confirmer votre paiement.
+      </div>
+
+    </div>
+
+
+    <label for="numeroPaiement">
+      Numéro ayant effectué le paiement *
+    </label>
+
+    <input
+      type="tel"
+      id="numeroPaiement"
+      required
+      inputmode="tel"
+      placeholder="Numéro utilisé pour payer"
+    >
+
+
+    <label for="reference">
+      Référence de transaction *
+    </label>
+
+    <input
+      type="text"
+      id="reference"
+      required
+      placeholder="Ex : référence indiquée après le paiement"
+    >
+
+
+    <label>
+      📸 Reçu de paiement *
+    </label>
+
+    <div class="file-box">
+
+      <input
+        type="file"
+        id="receipt"
+        accept="image/*"
+        capture="environment"
+        required
+      >
+
+      <p class="small">
+        Prenez une photo ou sélectionnez la capture de votre reçu.
+      </p>
+
+    </div>
+
+
+    <button
+      type="submit"
+      class="submit"
+      id="submitButton">
+      ENVOYER MON INSCRIPTION
+    </button>
+
+    <div id="message"></div>
+
+  </form>
+
+
+  <div class="footer">
+    © 2026 INMeS — Octobre Rose
+  </div>
+
+</div>
+
+
+<script>
+
+/* =====================================================
+   CONFIGURATION
+===================================================== */
+
+const SCRIPT_URL =
+"https://script.google.com/macros/s/AKfycbwFabCxzbLDoSrBK94pzRcvqIeBXNzQ5aFhV48G5hKAGHGVFsehpUYJaYDLO30_dvN4sw/exec";
+
+const WHATSAPP =
+"2290146097308";
+
+const MONTANT = "3000";
+
+
+/* =====================================================
+   NUMÉROS DE PAIEMENT
+===================================================== */
+
+const payments = {
+
+  "MTN Mobile Money": {
+    number: "0159211056",
+    name: "BAWA Silvère Saka Fawziath"
+  },
+
+  "Moov Money": {
+    number: "0198977023",
+    name: "BAWA Saka Fawziath"
+  },
+
+  "Celtiis Cash": {
+    number: "0141291992",
+    name: "BAWA Saka Fawziath"
+  }
+
+};
+
+
+/* =====================================================
+   AFFICHAGE DU PAIEMENT
+===================================================== */
+
+const networkSelect =
+document.getElementById("reseau");
+
+const paymentBox =
+document.getElementById("paymentBox");
+
+const networkName =
+document.getElementById("networkName");
+
+const destinationNumber =
+document.getElementById("destinationNumber");
+
+const accountName =
+document.getElementById("accountName");
+
+
+networkSelect.addEventListener("change", function(){
+
+  const network = this.value;
+
+  if(!network){
+
+    paymentBox.style.display = "none";
+    return;
+
+  }
+
+  const payment = payments[network];
+
+  networkName.textContent = network;
+  destinationNumber.textContent = payment.number;
+  accountName.textContent = payment.name;
+
+  paymentBox.style.display = "block";
+
+});
+
+
+/* =====================================================
+   COPIER LE NUMÉRO
+===================================================== */
+
+function copyPaymentNumber(){
+
+  const network = networkSelect.value;
+
+  if(!network) return;
+
+  const number =
+  payments[network].number;
+
+  navigator.clipboard.writeText(number)
+  .then(function(){
+
+    alert("Numéro copié : " + number);
+
+  })
+  .catch(function(){
+
+    alert("Numéro : " + number);
+
+  });
+
+}
+
+
+/* =====================================================
+   COMPRESSION DU REÇU
+===================================================== */
+
+function compressImage(file){
+
+  return new Promise(function(resolve,reject){
+
+    const reader = new FileReader();
+
+    reader.onload = function(event){
+
+      const img = new Image();
+
+      img.onload = function(){
+
+        const MAX_WIDTH = 1200;
+
+        let width = img.width;
+        let height = img.height;
+
+        if(width > MAX_WIDTH){
+
+          height =
+          height * MAX_WIDTH / width;
+
+          width = MAX_WIDTH;
+
+        }
+
+        const canvas =
+        document.createElement("canvas");
+
+        canvas.width = width;
+        canvas.height = height;
+
+        const ctx =
+        canvas.getContext("2d");
+
+        ctx.drawImage(
+          img,
+          0,
+          0,
+          width,
+          height
+        );
+
+        const compressed =
+        canvas.toDataURL(
+          "image/jpeg",
+          0.70
+        );
+
+        resolve(compressed);
+
+      };
+
+      img.onerror = reject;
+
+      img.src = event.target.result;
+
+    };
+
+    reader.onerror = reject;
+
+    reader.readAsDataURL(file);
+
+  });
+
+}
+
+
+/* =====================================================
+   FORMULAIRE
+===================================================== */
+
+const form =
+document.getElementById("registrationForm");
+
+const submitButton =
+document.getElementById("submitButton");
+
+const message =
+document.getElementById("message");
+
+
+form.addEventListener("submit", async function(event){
+
+  event.preventDefault();
+
+
+  const nom =
+  document.getElementById("nom").value.trim();
+
+  const prenom =
+  document.getElementById("prenom").value.trim();
+
+  const whatsapp =
+  document.getElementById("whatsapp").value.trim();
+
+  const statut =
+  document.getElementById("statut").value;
+
+  const taille =
+  document.getElementById("taille").value;
+
+  const reseau =
+  document.getElementById("reseau").value;
+
+  const numeroPaiement =
+  document.getElementById("numeroPaiement").value.trim();
+
+  const reference =
+  document.getElementById("reference").value.trim();
+
+  const receiptInput =
+  document.getElementById("receipt");
+
+  const file =
+  receiptInput.files[0];
+
+
+  if(!file){
+
+    showMessage(
+      "Veuillez ajouter votre reçu de paiement.",
+      "error"
+    );
+
+    return;
+
+  }
+
+
+  if(file.size > 8 * 1024 * 1024){
+
+    showMessage(
+      "Le reçu est trop volumineux. Choisissez une image de moins de 8 Mo.",
+      "error"
+    );
+
+    return;
+
+  }
+
+
+  if(!reseau){
+
+    showMessage(
+      "Veuillez sélectionner votre réseau de paiement.",
+      "error"
+    );
+
+    return;
+
+  }
+
+
+  submitButton.disabled = true;
+
+  submitButton.textContent =
+  "ENVOI EN COURS...";
+
+
+  try{
+
+    const compressedImage =
+    await compressImage(file);
+
+
+    const base64 =
+    compressedImage.split(",")[1];
+
+
+    const registrationData = {
+
+      nom: nom,
+
+      prenom: prenom,
+
+      whatsapp: whatsapp,
+
+      statut: statut,
+
+      taille: taille,
+
+      reseau: reseau,
+
+      numeroPaiement: numeroPaiement,
+
+      numeroDestinataire:
+      payments[reseau].number,
+
+      montant: MONTANT,
+
+      reference: reference,
+
+      receipt: {
+
+        name:
+        "Recu-" +
+        Date.now() +
+        ".jpg",
+
+        type:
+        "image/jpeg",
+
+        data:
+        base64
+
+      }
+
+    };
+
+
+    /*
+      Envoi vers Google Apps Script.
+      "no-cors" permet au navigateur mobile
+      d'envoyer les données sans bloquer
+      la requête à cause du domaine différent.
+    */
+
+    await fetch(
+
+      SCRIPT_URL,
+
+      {
+
+        method: "POST",
+
+        mode: "no-cors",
+
+        headers: {
+          "Content-Type":
+          "text/plain;charset=utf-8"
+        },
+
+        body:
+        JSON.stringify(registrationData)
+
+      }
+
+    );
+
+
+    showMessage(
+
+      "✅ Votre inscription a été envoyée. " +
+      "Veuillez maintenant confirmer votre inscription sur WhatsApp.",
+
+      "success"
+
+    );
+
+
+    /*
+      Message WhatsApp
+    */
+
+    const whatsappMessage =
+
+`Bonjour, je viens de m'inscrire pour Octobre Rose à l'INMeS.
+
+Nom : ${nom}
+Prénom(s) : ${prenom}
+Numéro WhatsApp : ${whatsapp}
+Réseau de paiement : ${reseau}
+Numéro ayant payé : ${numeroPaiement}
+Référence de transaction : ${reference}
+Montant : ${MONTANT} FCFA
+Taille T-shirt : ${taille}
+
+Je joins ma confirmation d'inscription.`;
+
+    
+    const whatsappURL =
+    "https://wa.me/" +
+    WHATSAPP +
+    "?text=" +
+    encodeURIComponent(whatsappMessage);
+
+
+    setTimeout(function(){
+
+      window.open(
+        whatsappURL,
+        "_blank"
+      );
+
+    },1200);
+
+
+    form.reset();
+
+    paymentBox.style.display =
+    "none";
+
+
+  }catch(error){
+
+    console.error(error);
+
+    showMessage(
+
+      "❌ Une erreur est survenue pendant l'envoi. Vérifiez votre connexion et réessayez.",
+
+      "error"
+
+    );
+
+  }
+
+
+  submitButton.disabled = false;
+
+  submitButton.textContent =
+  "ENVOYER MON INSCRIPTION";
+
+});
+
+
+/* =====================================================
+   MESSAGE
+===================================================== */
+
+function showMessage(text,type){
+
+  message.textContent = text;
+
+  message.className = type;
+
+  message.style.display = "block";
+
+  window.scrollTo({
+    top: document.body.scrollHeight,
+    behavior: "smooth"
+  });
+
+}
+
+</script>
+
+</body>
+</html>
