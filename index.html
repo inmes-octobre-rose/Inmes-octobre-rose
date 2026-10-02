@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Octobre Rose à l'INMeS</title>
+
+<style>
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background: #fff7fa;
+  color: #333;
+}
+
+.hero {
+  background: linear-gradient(135deg, #e91e63, #f8a5c2);
+  color: white;
+  padding: 45px 20px;
+  text-align: center;
+  border-radius: 0 0 30px 30px;
+}
+
+.hero h1 {
+  font-size: 30px;
+  margin-bottom: 12px;
+}
+
+.hero p {
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+.container {
+  max-width: 600px;
+  margin: 25px auto;
+  padding: 0 18px;
+}
+
+.card {
+  background: white;
+  padding: 24px;
+  border-radius: 18px;
+  box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+  margin-bottom: 20px;
+}
+
+.card h2 {
+  color: #d81b60;
+  margin-bottom: 18px;
+  font-size: 21px;
+}
+
+.info {
+  line-height: 1.8;
+  margin-bottom: 15px;
+}
+
+.price {
+  background: #fff0f5;
+  padding: 15px;
+  border-radius: 12px;
+  text-align: center;
+  font-weight: bold;
+  color: #d81b60;
+  margin: 15px 0;
+}
+
+label {
+  display: block;
+  margin-top: 15px;
+  margin-bottom: 7px;
+  font-weight: bold;
+}
+
+input, select {
+  width: 100%;
+  padding: 13px;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  font-size: 15px;
+  outline: none;
+}
+
+input:focus, select:focus {
+  border-color: #e91e63;
+}
+
+button {
+  width: 100%;
+  padding: 15px;
+  border: none;
+  border-radius: 12px;
+  background: #e91e63;
+  color: white;
+  font-size: 17px;
+  font-weight: bold;
+  margin-top: 25px;
+  cursor: pointer;
+}
+
+button:hover {
+  background: #c2185b;
+}
+
+.note {
+  background: #fff8e1;
+  padding: 14px;
+  border-radius: 10px;
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+footer {
+  text-align: center;
+  padding: 25px;
+  color: #777;
+  font-size: 13px;
+}
+</style>
+</head>
+
+<body>
+
+<section class="hero">
+  <h1>🎀 Octobre Rose à l'INMeS</h1>
+  <p>
+    Ensemble contre le cancer du sein.<br>
+    Rejoins-nous pour la grande mobilisation du 24 octobre 2026.
+  </p>
+</section>
+
+<div class="container">
+
+  <div class="card">
+    <h2>📅 Informations</h2>
+
+    <div class="info">
+      <strong>📅 Date :</strong> 24 octobre 2026<br>
+      <strong>📍 Lieu :</strong> Marché Ganhi – Cotonou<br>
+      <strong>🎀 Activité :</strong> Grande marche de sensibilisation
+    </div>
+
+    <div class="price">
+      Participation : 3 000 FCFA
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>📝 Inscription</h2>
+
+    <form id="inscriptionForm">
+
+      <label>Nom *</label>
+      <input type="text" id="nom" required>
+
+      <label>Prénom(s) *</label>
+      <input type="text" id="prenom" required>
+
+      <label>Numéro WhatsApp *</label>
+      <input type="tel" id="telephone" placeholder="Ex : 97000000" required>
+
+      <label>Statut *</label>
+      <select id="statut" required>
+        <option value="">Sélectionner</option>
+        <option>Étudiant(e)</option>
+        <option>Professionnel(le) de santé</option>
+        <option>Élève</option>
+        <option>Enseignant(e)</option>
+        <option>Autre</option>
+      </select>
+
+      <label>Taille du T-shirt *</label>
+      <select id="taille" required>
+        <option value="">Sélectionner</option>
+        <option>S</option>
+        <option>M</option>
+        <option>L</option>
+        <option>XL</option>
+        <option>XXL</option>
+      </select>
+
+      <h2 style="margin-top:30px;">💳 Paiement</h2>
+
+      <div class="note">
+        Après avoir rempli vos informations, effectuez le paiement
+        de <strong>3 000 FCFA</strong> sur l'un des réseaux indiqués
+        par l'organisation, puis renseignez la référence de la transaction.
+      </div>
+
+      <label>Réseau utilisé *</label>
+      <select id="reseau" required>
+        <option value="">Sélectionner</option>
+        <option>MTN Mobile Money</option>
+        <option>Moov Money</option>
+        <option>Celtiis Cash</option>
+      </select>
+
+      <label>Référence de transaction *</label>
+      <input type="text" id="reference" required>
+
+      <button type="submit">
+        🟢 Confirmer mon inscription
+      </button>
+
+    </form>
+  </div>
+
+</div>
+
+<footer>
+  Octobre Rose à l'INMeS — 2026<br>
+  Ensemble pour la lutte contre le cancer du sein.
+</footer>
+
+<script>
+
+document.getElementById("inscriptionForm").addEventListener("submit", function(e) {
+
+  e.preventDefault();
+
+  const nom = document.getElementById("nom").value;
+  const prenom = document.getElementById("prenom").value;
+  const telephone = document.getElementById("telephone").value;
+  const statut = document.getElementById("statut").value;
+  const taille = document.getElementById("taille").value;
+  const reseau = document.getElementById("reseau").value;
+  const reference = document.getElementById("reference").value;
+
+  const message =
+`🎀 INSCRIPTION OCTOBRE ROSE À L'INMeS
+
+Nom : ${nom}
+Prénom(s) : ${prenom}
+WhatsApp : ${telephone}
+Statut : ${statut}
+Taille T-shirt : ${taille}
+
+💳 Paiement
+Montant : 3 000 FCFA
+Réseau : ${reseau}
+Référence : ${reference}
+
+Je confirme avoir effectué mon inscription pour la grande marche du 24 octobre 2026.`;
+
+  // NUMÉRO WHATSAPP DE L'ORGANISATION À REMPLACER PLUS TARD
+  const numeroOrganisation = "22900000000";
+
+  const lien = "https://wa.me/" + numeroOrganisation +
+               "?text=" + encodeURIComponent(message);
+
+  window.location.href = lien;
+
+});
+
+</script>
+
+</body>
+  </html>
